@@ -3,6 +3,7 @@ package ge.edu.tsu.controller.subject;
 import ge.edu.tsu.entity.subject.*;
 import ge.edu.tsu.service.subject.SubjectService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
@@ -18,6 +19,7 @@ import java.util.List;
  */
 @RestController
 @RequestMapping("subject")
+@CrossOrigin
 public class SubjectController {
     @Autowired
     private SubjectService subjectService;

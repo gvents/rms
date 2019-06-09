@@ -83,9 +83,9 @@ public class ClassroomDao {
                 classroomEntity.setIdClassroom(rs.getInt("idClassRoom"));
                 classroomEntity.setNumber(rs.getString("number"));
                 classroomEntity.setCapacity(rs.getInt("capacity"));
-                classroomEntity.setIsProjector(rs.getInt("isProjector"));
-                classroomEntity.setIsComputer(rs.getInt("isComputer"));
-                classroomEntity.setIsInternet(rs.getInt("isInternet"));
+                classroomEntity.setIsProjector(rs.getString("isProjector").equals("1") ? "კი" : "არა");
+                classroomEntity.setIsComputer(rs.getString("isComputer").equals("1") ? "კი" : "არა");
+                classroomEntity.setIsInternet(rs.getString("isInternet").equals("1") ? "კი" : "არა");
 
                 result.add(classroomEntity);
             }
@@ -119,9 +119,9 @@ public class ClassroomDao {
                 classroomEntity.setIdClassroom(rs.getInt("idClassRoom"));
                 classroomEntity.setNumber(rs.getString("number"));
                 classroomEntity.setCapacity(rs.getInt("capacity"));
-                classroomEntity.setIsProjector(rs.getInt("isProjector"));
-                classroomEntity.setIsComputer(rs.getInt("isComputer"));
-                classroomEntity.setIsInternet(rs.getInt("isInternet"));
+                classroomEntity.setIsProjector(rs.getString("isProjector").equals("1") ? "კი" : "არა");
+                classroomEntity.setIsComputer(rs.getString("isComputer").equals("1") ? "კი" : "არა");
+                classroomEntity.setIsInternet(rs.getString("isInternet").equals("1") ? "კი" : "არა");
 
                 result.add(classroomEntity);
             }
@@ -155,9 +155,9 @@ public class ClassroomDao {
                 classroomEntity.setIdClassroom(rs.getInt("idClassRoom"));
                 classroomEntity.setNumber(rs.getString("number"));
                 classroomEntity.setCapacity(rs.getInt("capacity"));
-                classroomEntity.setIsProjector(rs.getInt("isProjector"));
-                classroomEntity.setIsComputer(rs.getInt("isComputer"));
-                classroomEntity.setIsInternet(rs.getInt("isInternet"));
+                classroomEntity.setIsProjector(rs.getString("isProjector").equals("1") ? "კი" : "არა");
+                classroomEntity.setIsComputer(rs.getString("isComputer").equals("1") ? "კი" : "არა");
+                classroomEntity.setIsInternet(rs.getString("isInternet").equals("1") ? "კი" : "არა");
 
                 result.add(classroomEntity);
             }
@@ -191,9 +191,9 @@ public class ClassroomDao {
                 classroomEntity.setIdClassroom(rs.getInt("idClassRoom"));
                 classroomEntity.setNumber(rs.getString("number"));
                 classroomEntity.setCapacity(rs.getInt("capacity"));
-                classroomEntity.setIsProjector(rs.getInt("isProjector"));
-                classroomEntity.setIsComputer(rs.getInt("isComputer"));
-                classroomEntity.setIsInternet(rs.getInt("isInternet"));
+                classroomEntity.setIsProjector(rs.getString("isProjector").equals("1") ? "კი" : "არა");
+                classroomEntity.setIsComputer(rs.getString("isComputer").equals("1") ? "კი" : "არა");
+                classroomEntity.setIsInternet(rs.getString("isInternet").equals("1") ? "კი" : "არა");
 
                 result.add(classroomEntity);
             }
@@ -227,9 +227,9 @@ public class ClassroomDao {
                 classroomEntity.setIdClassroom(rs.getInt("idClassRoom"));
                 classroomEntity.setNumber(rs.getString("number"));
                 classroomEntity.setCapacity(rs.getInt("capacity"));
-                classroomEntity.setIsProjector(rs.getInt("isProjector"));
-                classroomEntity.setIsComputer(rs.getInt("isComputer"));
-                classroomEntity.setIsInternet(rs.getInt("isInternet"));
+                classroomEntity.setIsProjector(rs.getString("isProjector").equals("1") ? "კი" : "არა");
+                classroomEntity.setIsComputer(rs.getString("isComputer").equals("1") ? "კი" : "არა");
+                classroomEntity.setIsInternet(rs.getString("isInternet").equals("1") ? "კი" : "არა");
 
                 result.add(classroomEntity);
             }
@@ -263,9 +263,9 @@ public class ClassroomDao {
                 classroomEntity.setIdClassroom(rs.getInt("idClassRoom"));
                 classroomEntity.setNumber(rs.getString("number"));
                 classroomEntity.setCapacity(rs.getInt("capacity"));
-                classroomEntity.setIsProjector(rs.getInt("isProjector"));
-                classroomEntity.setIsComputer(rs.getInt("isComputer"));
-                classroomEntity.setIsInternet(rs.getInt("isInternet"));
+                classroomEntity.setIsProjector(rs.getString("isProjector").equals("1") ? "კი" : "არა");
+                classroomEntity.setIsComputer(rs.getString("isComputer").equals("1") ? "კი" : "არა");
+                classroomEntity.setIsInternet(rs.getString("isInternet").equals("1") ? "კი" : "არა");
 
                 result.add(classroomEntity);
             }

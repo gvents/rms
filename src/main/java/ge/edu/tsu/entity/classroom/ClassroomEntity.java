@@ -11,9 +11,9 @@ public class ClassroomEntity {
     private int idClassroom;
     private String number;
     private int capacity;
-    private int isProjector;
-    private int isComputer;
-    private int isInternet;
+    private String isProjector;
+    private String isComputer;
+    private String isInternet;
 
     public int getIdClassroom() {
         return idClassroom;
@@ -39,27 +39,27 @@ public class ClassroomEntity {
         this.capacity = capacity;
     }
 
-    public int getIsProjector() {
+    public String getIsProjector() {
         return isProjector;
     }
 
-    public void setIsProjector(int isProjector) {
+    public void setIsProjector(String isProjector) {
         this.isProjector = isProjector;
     }
 
-    public int getIsComputer() {
+    public String getIsComputer() {
         return isComputer;
     }
 
-    public void setIsComputer(int isComputer) {
+    public void setIsComputer(String isComputer) {
         this.isComputer = isComputer;
     }
 
-    public int getIsInternet() {
+    public String getIsInternet() {
         return isInternet;
     }
 
-    public void setIsInternet(int isInternet) {
+    public void setIsInternet(String isInternet) {
         this.isInternet = isInternet;
     }
 }
