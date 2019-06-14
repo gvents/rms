@@ -27,8 +27,12 @@ public class ClassroomService {
         classroomDao.deleteClassroom(classroomId);
     }
 
-    public List<ClassroomEntity> getAllClassroom() {
-        return classroomDao.getAllClassroom();
+    public List<ClassroomEntity> getAllClassroomFilter() {
+        return classroomDao.getAllClassroomFilter();
+    }
+
+    public List<ClassroomEntity> getAllClassroom(String capRange, String isComp, String isNet, String isProj) {
+        return classroomDao.getAllClassroom(capRange, isComp, isNet, isProj);
     }
 
     public List<ClassroomEntity> getAllClassRoomFilterCap(int capacity) {

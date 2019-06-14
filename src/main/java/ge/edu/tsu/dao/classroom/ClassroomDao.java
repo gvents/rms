@@ -64,7 +64,7 @@ public class ClassroomDao {
 
     }
 
-    public List<ClassroomEntity> getAllClassroom() {
+    public List<ClassroomEntity> getAllClassroomFilter() {
         String sql = "{ call getAllClassRoom()}";
         List<ClassroomEntity> result = new ArrayList<>();
 
@@ -74,6 +74,56 @@ public class ClassroomDao {
                     "root", "");
 
             CallableStatement cstmt = conn.prepareCall(sql);
+
+            ResultSet rs = cstmt.executeQuery();
+
+            while (rs.next()) {
+                ClassroomEntity classroomEntity = new ClassroomEntity();
+
+                classroomEntity.setIdClassroom(rs.getInt("idClassRoom"));
+                classroomEntity.setNumber(rs.getString("number"));
+                classroomEntity.setCapacity(rs.getInt("capacity"));
+                classroomEntity.setIsProjector(rs.getString("isProjector").equals("1") ? "კი" : "არა");
+                classroomEntity.setIsComputer(rs.getString("isComputer").equals("1") ? "კი" : "არა");
+                classroomEntity.setIsInternet(rs.getString("isInternet").equals("1") ? "კი" : "არა");
+
+                result.add(classroomEntity);
+            }
+
+            conn.close();
+        } catch (Exception e) {
+            System.err.println(e.getMessage());
+        }
+
+        return result;
+    }
+
+    public List<ClassroomEntity> getAllClassroom(String capRange, String isComp, String isNet, String isProj) {
+        String sql = "{ call getAllClassRoomFilter(?,?,?,?,?,?)}";
+        List<ClassroomEntity> result = new ArrayList<>();
+
+        try {
+            Class.forName("com.mysql.jdbc.Driver");
+            Connection conn = DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/test",
+                    "root", "");
+
+            CallableStatement cstmt = conn.prepareCall(sql);
+
+            if (capRange.contains("+")) {
+                cstmt.setInt(1, Integer.valueOf(capRange.split("\\+")[0]));
+                cstmt.setInt(2, 9000);
+            } else if (capRange.contains("-")) {
+                cstmt.setInt(1, Integer.valueOf(capRange.split("-")[0]));
+                cstmt.setInt(2, Integer.valueOf(capRange.split("-")[1]));
+            } else {
+                cstmt.setInt(1, 0);
+                cstmt.setInt(2, 9000);
+            }
+
+            cstmt.setInt(3, isComp.equals("კი") ? 1 : 0);
+            cstmt.setInt(4, isNet.equals("კი") ? 1 : 0);
+            cstmt.setInt(5, isProj.equals("კი") ? 1 : 0);
+            cstmt.setNull(6, Types.NULL);
 
             ResultSet rs = cstmt.executeQuery();
 

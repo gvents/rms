@@ -4,10 +4,7 @@ import ge.edu.tsu.entity.classroom.ClassroomEntity;
 import ge.edu.tsu.service.classroom.ClassroomService;
 import org.omg.PortableInterceptor.ServerRequestInfo;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -39,11 +36,22 @@ public class ClassroomController {
         classroomService.deleteClassroom(classroomId);
     }
 
-    @RequestMapping(headers = {"Accept=application/json;charset=UTF-8"}, value = "getAllClassroom/ajax",
+    @RequestMapping(headers = {"Accept=application/json;charset=UTF-8"}, value = "getAllClassroomFilter/ajax",
             produces = "application/json;charset=UTF-8")
     public @ResponseBody
-    List<ClassroomEntity> getAllClassroom() {
-        return classroomService.getAllClassroom();
+    List<ClassroomEntity> getAllClassroomFilter() {
+        return classroomService.getAllClassroomFilter();
+    }
+
+    @RequestMapping(headers = {"Accept=application/json;charset=UTF-8"},
+            value = "getAllClassroom/ajax/{capRange}/{isComp}/{isNet}/{isProj}",
+            produces = "application/json;charset=UTF-8")
+    public @ResponseBody
+    List<ClassroomEntity> getAllClassroom(@PathVariable("capRange") String capRange,
+                                          @PathVariable("isComp") String isComp,
+                                          @PathVariable("isNet") String isNet,
+                                          @PathVariable("isProj") String isProj) {
+        return classroomService.getAllClassroom(capRange, isComp, isNet, isProj);
     }
 
     @RequestMapping(headers = {"Accept=application/json;charset=UTF-8"}, value = "getAllClassRoomFilterCap/ajax",
