@@ -109,15 +109,18 @@ public class ClassroomDao {
 
             CallableStatement cstmt = conn.prepareCall(sql);
 
-            if (capRange.contains("+")) {
-                cstmt.setInt(1, Integer.valueOf(capRange.split("\\+")[0]));
-                cstmt.setInt(2, 9000);
-            } else if (capRange.contains("-")) {
-                cstmt.setInt(1, Integer.valueOf(capRange.split("-")[0]));
-                cstmt.setInt(2, Integer.valueOf(capRange.split("-")[1]));
-            } else {
+            if (capRange.equals("30")) {
                 cstmt.setInt(1, 0);
-                cstmt.setInt(2, 9000);
+                cstmt.setInt(2, 30);
+            } else if (capRange.equals("60")) {
+                cstmt.setInt(1, 30);
+                cstmt.setInt(2, 60);
+            } else if (capRange.equals("100")) {
+                cstmt.setInt(1, 60);
+                cstmt.setInt(2, 100);
+            } else {
+                cstmt.setInt(1, 100);
+                cstmt.setInt(2, 10000);
             }
 
             cstmt.setInt(3, isComp.equals("კი") ? 1 : 0);
