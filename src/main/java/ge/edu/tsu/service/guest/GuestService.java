@@ -1,8 +1,11 @@
 package ge.edu.tsu.service.guest;
 
 import ge.edu.tsu.dao.guest.GuestDao;
+import ge.edu.tsu.entity.guest.ScheduleEntity;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 /**
  * Created by IntelliJ IDEA.
@@ -18,5 +21,9 @@ public class GuestService {
 
     public String createRequest(String name, String lastName, String company, String phone, String companyEmail, String userEmail, String comment) {
         return guestDao.createRequest(name, lastName, company, phone, companyEmail, userEmail, comment);
+    }
+
+    public List<ScheduleEntity> getScheduleByClass(int id) {
+        return guestDao.getScheduleByClass(id);
     }
 }

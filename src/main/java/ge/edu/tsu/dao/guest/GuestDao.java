@@ -1,11 +1,11 @@
 package ge.edu.tsu.dao.guest;
 
+import ge.edu.tsu.entity.guest.ScheduleEntity;
 import org.springframework.stereotype.Repository;
 
-import java.sql.CallableStatement;
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.Types;
+import java.sql.*;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by IntelliJ IDEA.
@@ -48,6 +48,44 @@ public class GuestDao {
         } catch (Exception e) {
             System.err.println(e.getMessage());
             result = "არჩეული დროები არაა თავისუფალი!";
+        }
+
+        return result;
+    }
+
+    public List<ScheduleEntity> getScheduleByClass(int id) {
+        String sql = "{ call getScheduleForClass(?)}";
+        List<ScheduleEntity> result = new ArrayList<>();
+
+        try {
+            Class.forName("com.mysql.jdbc.Driver");
+            Connection conn = DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/test",
+                    "root", "");
+
+            CallableStatement cstmt = conn.prepareCall(sql);
+
+            cstmt.setInt(1, id);
+
+            ResultSet rs = cstmt.executeQuery();
+
+            while (rs.next()) {
+                ScheduleEntity scheduleEntity = new ScheduleEntity();
+
+                scheduleEntity.setIdSchedule(rs.getInt("idSchedule"));
+                scheduleEntity.setStartDate(rs.getString("startDate"));
+                scheduleEntity.setEndDate(rs.getString("endDate"));
+                scheduleEntity.setStartTime(rs.getString("startTime"));
+                scheduleEntity.setEndTime(rs.getString("endTime"));
+                scheduleEntity.setClassroomId(rs.getString("classroom_idClassRoom"));
+                scheduleEntity.setSubjectId(rs.getString("subjects_idSubjects"));
+                scheduleEntity.setTeacherId(rs.getString("teacher_idTeacher"));
+
+                result.add(scheduleEntity);
+            }
+
+            conn.close();
+        } catch (Exception e) {
+            System.err.println(e.getMessage());
         }
 
         return result;

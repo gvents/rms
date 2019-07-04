@@ -123,9 +123,24 @@ public class ClassroomDao {
                 cstmt.setInt(2, 10000);
             }
 
-            cstmt.setInt(3, isComp.equals("კი") ? 1 : 0);
-            cstmt.setInt(4, isNet.equals("კი") ? 1 : 0);
-            cstmt.setInt(5, isProj.equals("კი") ? 1 : 0);
+            if (isComp != null) {
+                cstmt.setInt(3, isComp.equals("კი") ? 1 : 0);
+            } else {
+                cstmt.setNull(3, Types.NULL);
+            }
+
+            if (isNet != null) {
+                cstmt.setInt(4, isNet.equals("კი") ? 1 : 0);
+            } else {
+                cstmt.setNull(4, Types.NULL);
+            }
+
+            if (isProj != null) {
+                cstmt.setInt(5, isProj.equals("კი") ? 1 : 0);
+            } else {
+                cstmt.setNull(5, Types.NULL);
+            }
+
             cstmt.setNull(6, Types.NULL);
 
             ResultSet rs = cstmt.executeQuery();
