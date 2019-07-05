@@ -27,8 +27,11 @@ public class GuestController {
     @RequestMapping(headers = {"Accept=application/json;charset=UTF-8"}, value = "createRequest/ajax",
             produces = "application/json;charset=UTF-8")
     public @ResponseBody
-    String createRequest(String name, String lastName, String company, String phone, String companyEmail, String userEmail, String comment) {
-        return guestService.createRequest(name, lastName, company, phone, companyEmail, userEmail, comment);
+    String createRequest(String name, String lastName, String company, String phone,
+                         String companyEmail, String userEmail, String comment,
+                         String startDate, String endDate, String startTime, String endTime) {
+        return guestService.createRequest(name, lastName, company, phone, companyEmail, userEmail,
+                comment, startDate, endDate, startTime, endTime);
     }
 
     @RequestMapping(headers = {"Accept=application/json;charset=UTF-8"}, value = "getScheduleByClass",

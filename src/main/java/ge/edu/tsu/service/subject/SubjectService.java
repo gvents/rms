@@ -98,4 +98,36 @@ public class SubjectService {
     public void updateTeacher(int id, String name, String lastName, int age, int departmentId) {
         subjectDao.updateTeacher(id, name, lastName, age, departmentId);
     }
+
+    public void createStaff(String name, String lastName, String phone, String email) {
+        subjectDao.createStaff(name, lastName, phone, email);
+    }
+
+    public void deleteStaff(int staffId) {
+        subjectDao.deleteStaff(staffId);
+    }
+
+    public List<StaffEntity> getStaff() {
+        return subjectDao.getStaff();
+    }
+
+    public void updateStaff(int id, String name, String lastName, String phone, String email) {
+        subjectDao.updateStaff(id, name, lastName, phone, email);
+    }
+
+    public void createDayOff(String date) {
+        subjectDao.createDayOff(date);
+    }
+
+    public void deleteDayOff(int dayOffId) {
+        subjectDao.deleteDayOff(dayOffId);
+    }
+
+    public List<DayOffEntity> getDayOff() {
+        return subjectDao.getDayOff();
+    }
+
+    public void updateDayOff(int id, String date) {
+        subjectDao.updateDayOff(id, date);
+    }
 }

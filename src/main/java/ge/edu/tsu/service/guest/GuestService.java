@@ -19,8 +19,11 @@ public class GuestService {
     @Autowired
     private GuestDao guestDao;
 
-    public String createRequest(String name, String lastName, String company, String phone, String companyEmail, String userEmail, String comment) {
-        return guestDao.createRequest(name, lastName, company, phone, companyEmail, userEmail, comment);
+    public String createRequest(String name, String lastName, String company, String phone,
+                                String companyEmail, String userEmail, String comment,
+                                String startDate, String endDate, String startTime, String endTime) {
+        return guestDao.createRequest(name, lastName, company, phone, companyEmail, userEmail,
+                comment, startDate, endDate, startTime, endTime);
     }
 
     public List<ScheduleEntity> getScheduleByClass(String id) {

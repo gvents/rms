@@ -164,4 +164,59 @@ public class SubjectController {
         subjectService.updateTeacher(id, name, lastName, age, departmentId);
     }
 
+    @RequestMapping(headers = {"Accept=application/json;charset=UTF-8"}, value = "createStaff/ajax",
+            produces = "application/json;charset=UTF-8")
+    public @ResponseBody
+    void createStaff(String name, String lastName, String phone, String email) {
+        subjectService.createStaff(name, lastName, phone, email);
+    }
+
+    @RequestMapping(headers = {"Accept=application/json;charset=UTF-8"}, value = "deleteStaff/ajax",
+            produces = "application/json;charset=UTF-8")
+    public @ResponseBody
+    void deleteStaff(int staffId) {
+        subjectService.deleteStaff(staffId);
+    }
+
+    @RequestMapping(headers = {"Accept=application/json;charset=UTF-8"}, value = "getStaff/ajax",
+            produces = "application/json;charset=UTF-8")
+    public @ResponseBody
+    List<StaffEntity> getStaff() {
+        return subjectService.getStaff();
+    }
+
+    @RequestMapping(headers = {"Accept=application/json;charset=UTF-8"}, value = "updateStaff/ajax",
+            produces = "application/json;charset=UTF-8")
+    public @ResponseBody
+    void updateStaff(int id, String name, String lastName, String phone, String email) {
+        subjectService.updateStaff(id, name, lastName, phone, email);
+    }
+
+    @RequestMapping(headers = {"Accept=application/json;charset=UTF-8"}, value = "createDayOff/ajax",
+            produces = "application/json;charset=UTF-8")
+    public @ResponseBody
+    void createDayOff(String date) {
+        subjectService.createDayOff(date);
+    }
+
+    @RequestMapping(headers = {"Accept=application/json;charset=UTF-8"}, value = "deleteDayOff/ajax",
+            produces = "application/json;charset=UTF-8")
+    public @ResponseBody
+    void deleteDayOff(int dayOffId) {
+        subjectService.deleteDayOff(dayOffId);
+    }
+
+    @RequestMapping(headers = {"Accept=application/json;charset=UTF-8"}, value = "getDayOff/ajax",
+            produces = "application/json;charset=UTF-8")
+    public @ResponseBody
+    List<DayOffEntity> getDayOff() {
+        return subjectService.getDayOff();
+    }
+
+    @RequestMapping(headers = {"Accept=application/json;charset=UTF-8"}, value = "updateDayOff/ajax",
+            produces = "application/json;charset=UTF-8")
+    public @ResponseBody
+    void updateDayOff(int id, String date) {
+        subjectService.updateDayOff(id, date);
+    }
 }

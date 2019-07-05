@@ -3,10 +3,11 @@ package ge.edu.tsu.dao.subject;
 import ge.edu.tsu.entity.subject.*;
 import org.springframework.stereotype.Repository;
 
-import java.sql.CallableStatement;
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.ResultSet;
+import java.sql.*;
+import java.util.Date;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -493,7 +494,7 @@ public class SubjectDao {
     }
 
     public void updateTeacher(int id, String name, String lastName, int age, int departmentId) {
-        String sql = "{ call updateTeacher(?,?)}";
+        String sql = "{ call updateTeacher(?,?,?,?,?)}";
 
         try {
             Class.forName("com.mysql.jdbc.Driver");
@@ -507,6 +508,219 @@ public class SubjectDao {
             cstmt.setString(3, lastName);
             cstmt.setInt(4, age);
             cstmt.setInt(5, departmentId);
+
+            cstmt.execute();
+            cstmt.close();
+
+            conn.close();
+        } catch (Exception e) {
+            System.err.println(e.getMessage());
+        }
+    }
+
+    public void createStaff(String name, String lastName, String phone, String email) {
+        String sql = "{ call createStaff(?,?,?,?)}";
+
+        try {
+            Class.forName("com.mysql.jdbc.Driver");
+            Connection conn = DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/test",
+                    "root", "");
+
+            CallableStatement cstmt = conn.prepareCall(sql);
+
+            cstmt.setString(1, name);
+            cstmt.setString(2, lastName);
+            cstmt.setString(3, phone);
+            cstmt.setString(4, email);
+
+            cstmt.execute();
+            cstmt.close();
+
+            conn.close();
+        } catch (Exception e) {
+            System.err.println(e.getMessage());
+        }
+
+    }
+
+    public void deleteStaff(int staffId) {
+        String sql = "{ call deleteStaff(?)}";
+
+        try {
+            Class.forName("com.mysql.jdbc.Driver");
+            Connection conn = DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/test",
+                    "root", "");
+
+            CallableStatement cstmt = conn.prepareCall(sql);
+
+            cstmt.setInt(1, staffId);
+
+            cstmt.execute();
+            cstmt.close();
+
+            conn.close();
+        } catch (Exception e) {
+            System.err.println(e.getMessage());
+        }
+
+    }
+
+    public List<StaffEntity> getStaff() {
+        String sql = "{ call getStaff()}";
+        List<StaffEntity> result = new ArrayList<>();
+
+        try {
+            Class.forName("com.mysql.jdbc.Driver");
+            Connection conn = DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/test",
+                    "root", "");
+
+            CallableStatement cstmt = conn.prepareCall(sql);
+
+            ResultSet rs = cstmt.executeQuery();
+
+            while (rs.next()) {
+                StaffEntity staffEntity = new StaffEntity();
+
+                staffEntity.setId(rs.getInt("idstaff"));
+                staffEntity.setName(rs.getString("name"));
+                staffEntity.setLastName(rs.getString("lastName"));
+                staffEntity.setPhone(rs.getString("phone"));
+                staffEntity.setEmail(rs.getString("email"));
+
+                result.add(staffEntity);
+            }
+
+            conn.close();
+        } catch (Exception e) {
+            System.err.println(e.getMessage());
+        }
+
+        return result;
+    }
+
+    public void updateStaff(int id, String name, String lastName, String phone, String email) {
+        String sql = "{ call updateStaff(?,?,?,?,?)}";
+
+        try {
+            Class.forName("com.mysql.jdbc.Driver");
+            Connection conn = DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/test",
+                    "root", "");
+
+            CallableStatement cstmt = conn.prepareCall(sql);
+
+            cstmt.setInt(1, id);
+            cstmt.setString(2, name);
+            cstmt.setString(3, lastName);
+            cstmt.setString(4, phone);
+            cstmt.setString(5, email);
+
+            cstmt.execute();
+            cstmt.close();
+
+            conn.close();
+        } catch (Exception e) {
+            System.err.println(e.getMessage());
+        }
+    }
+
+    public void createDayOff(String date) {
+        String sql = "{ call createDayOff(?)}";
+
+        DateFormat df = new SimpleDateFormat("MM/dd/yyyy, hh:mm:ss aa");
+
+        DateFormat outputFormat = new SimpleDateFormat("MM-dd-yyyy HH:mm:ss");
+        Date newDate = null;
+        String output = "";
+
+        try {
+            newDate = df.parse(date);
+
+            output = outputFormat.format(newDate);
+
+            System.out.println(output);
+
+            Class.forName("com.mysql.jdbc.Driver");
+            Connection conn = DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/test",
+                    "root", "");
+
+            CallableStatement cstmt = conn.prepareCall(sql);
+
+            cstmt.setString(1, output);
+
+            cstmt.execute();
+            cstmt.close();
+
+            conn.close();
+        } catch (Exception e) {
+            System.err.println(e.getMessage());
+        }
+
+    }
+
+    public void deleteDayOff(int dayOffId) {
+        String sql = "{ call deleteDayOff(?)}";
+
+        try {
+            Class.forName("com.mysql.jdbc.Driver");
+            Connection conn = DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/test",
+                    "root", "");
+
+            CallableStatement cstmt = conn.prepareCall(sql);
+
+            cstmt.setInt(1, dayOffId);
+
+            cstmt.execute();
+            cstmt.close();
+
+            conn.close();
+        } catch (Exception e) {
+            System.err.println(e.getMessage());
+        }
+
+    }
+
+    public List<DayOffEntity> getDayOff() {
+        String sql = "{ call getDayOff()}";
+        List<DayOffEntity> result = new ArrayList<>();
+
+        try {
+            Class.forName("com.mysql.jdbc.Driver");
+            Connection conn = DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/test",
+                    "root", "");
+
+            CallableStatement cstmt = conn.prepareCall(sql);
+
+            ResultSet rs = cstmt.executeQuery();
+
+            while (rs.next()) {
+                DayOffEntity dayOffEntity = new DayOffEntity();
+
+                dayOffEntity.setId(rs.getInt("idDayOff"));
+                dayOffEntity.setDate(rs.getString("date"));
+
+                result.add(dayOffEntity);
+            }
+
+            conn.close();
+        } catch (Exception e) {
+            System.err.println(e.getMessage());
+        }
+
+        return result;
+    }
+
+    public void updateDayOff(int id, String date) {
+        String sql = "{ call updateDayOff(?,?)}";
+
+        try {
+            Class.forName("com.mysql.jdbc.Driver");
+            Connection conn = DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/test",
+                    "root", "");
+
+            CallableStatement cstmt = conn.prepareCall(sql);
+
+            cstmt.setInt(1, id);
+            cstmt.setString(2, date);
 
             cstmt.execute();
             cstmt.close();

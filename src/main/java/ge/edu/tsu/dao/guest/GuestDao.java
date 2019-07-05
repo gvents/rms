@@ -16,11 +16,31 @@ import java.util.List;
  */
 @Repository
 public class GuestDao {
-    public String createRequest(String name, String lastName, String company, String phone, String companyEmail, String userEmail, String comment) {
+    public String createRequest(String name, String lastName, String company, String phone,
+                                String companyEmail, String userEmail, String comment,
+                                String startDate, String endDate, String startTime, String endTime) {
         String sql = "{ call createRequest(?,?,?,?,?,?,?,?,?,?,?)}";
         String result = "";
+        StringBuilder stringBuilder = new StringBuilder();
 
         try {
+            stringBuilder.append(comment);
+            stringBuilder.append('\n');
+
+            if (startDate != null && endDate != null && startTime != null && endTime != null ||
+                    startDate.equals("") && endDate.equals("") && startTime.equals("") && endTime.equals("")) {
+                if (startDate.equals(endDate)) {
+                    stringBuilder.append(startDate + '\n');
+                } else {
+                    stringBuilder.append(startDate + " - " + endDate + '\n');
+                }
+            } else {
+                throw new NullPointerException();
+            }
+
+            stringBuilder.append(startTime + " - " + endTime);
+            System.out.println(stringBuilder.toString());
+
             Class.forName("com.mysql.jdbc.Driver");
             Connection conn = DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/test",
                     "root", "");
@@ -35,7 +55,7 @@ public class GuestDao {
             cstmt.setNull(6, Types.NULL);
             cstmt.setString(7, phone);
             cstmt.setString(8, userEmail);
-            cstmt.setString(9, comment);
+            cstmt.setString(9, stringBuilder.toString());
             cstmt.setNull(10, Types.NULL);
             cstmt.setString(11, "pending");
 
@@ -45,9 +65,12 @@ public class GuestDao {
             conn.close();
 
             result = "მოთხოვნა წარმატებით გაიგზავნა!";
+        } catch (NullPointerException e) {
+            System.err.println(e.getMessage());
+            result = "ველები ცარიელია!";
         } catch (Exception e) {
             System.err.println(e.getMessage());
-            result = "არჩეული დროები არაა თავისუფალი!";
+            result = "დაფიქსირდა შეცდომა!";
         }
 
         return result;
