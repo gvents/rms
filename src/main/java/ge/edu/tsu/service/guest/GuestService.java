@@ -23,7 +23,7 @@ public class GuestService {
         return guestDao.createRequest(name, lastName, company, phone, companyEmail, userEmail, comment);
     }
 
-    public List<ScheduleEntity> getScheduleByClass(int id) {
+    public List<ScheduleEntity> getScheduleByClass(String id) {
         return guestDao.getScheduleByClass(id);
     }
 }

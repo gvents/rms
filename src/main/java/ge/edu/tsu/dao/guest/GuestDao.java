@@ -53,7 +53,7 @@ public class GuestDao {
         return result;
     }
 
-    public List<ScheduleEntity> getScheduleByClass(int id) {
+    public List<ScheduleEntity> getScheduleByClass(String id) {
         String sql = "{ call getScheduleForClass(?)}";
         List<ScheduleEntity> result = new ArrayList<>();
 
@@ -64,7 +64,7 @@ public class GuestDao {
 
             CallableStatement cstmt = conn.prepareCall(sql);
 
-            cstmt.setInt(1, id);
+            cstmt.setString(1, id);
 
             ResultSet rs = cstmt.executeQuery();
 

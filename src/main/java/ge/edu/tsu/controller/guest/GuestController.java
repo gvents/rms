@@ -34,7 +34,7 @@ public class GuestController {
     @RequestMapping(headers = {"Accept=application/json;charset=UTF-8"}, value = "getScheduleByClass",
             produces = "application/json;charset=UTF-8")
     public @ResponseBody
-    List<ScheduleEntity> getScheduleByClass(int id) {
+    List<ScheduleEntity> getScheduleByClass(String id) {
         return guestService.getScheduleByClass(id);
     }
 }
