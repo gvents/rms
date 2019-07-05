@@ -1,0 +1,52 @@
+﻿Classroom
+1. საკლასო ოთახის დამატება: http://localhost:8080/classroom/createClassroom/ajax?number=201&capacity=30&isProjector=1&isComputer=1&isInternet=0
+ლინკი: classroom/createClassroom/ajax
+პარამეტრები: number (String, ოთახის ნომერი), capacity (int), isProjector(int), isComputer(int), isInternet(int)
+2. ყველა საკლასო ოთახი:
+http://localhost:8080/classroom/getAllClassroomFilter/ajax
+ლინკი: classroom/getAllClassroomFilter/ajax
+3. საკლასო ოთახი ყველა ფილტრით:
+http://localhost:8080/classroom/getAllClassroom/ajax/30/1/1/1
+ლინკი: classroom/ getAllClassroom/ajax/{capRange}/{isComp}/{isNet}/{isProj} 
+4. საკლასო ოთახის წაშლა:
+http://localhost:8080/classroom/deleteClassroom/ajax?classroomId=12
+ლინკი: classroom/deleteClassroom/ajax
+პარამეტრები: classroomId(int)
+5. საკლასო ოთახი სტუდენტთა მოცულობის მიხედვით:
+http://localhost:8080/classroom/getAllClassRoomFilterCap/ajax?capacity=30
+ლინკი: classroom/getAllClassRoomFilterCap/ajax
+პარამეტრები: capacity(int) {0,1}
+6. საკლასო ოთახი კომპიუტერის არსებობის მიხედვით:
+http://localhost:8080/classroom/getAllClassRoomFilterComp/ajax?isComputer=1
+ლინკი: classroom/ getAllClassRoomFilterComp/ajax
+პარამეტრები: isComputer (int) {0,1}
+7. საკლასო ოთახი ინტერნეტის არსებობის მიხედვით:
+http://localhost:8080/classroom/getAllClassRoomFilterInt/ajax?isInternet=1 
+ლინკი: classroom/ getAllClassRoomFilterInt /ajax
+პარამეტრები: isInternet (int) {0,1}
+8. საკლასო ოთახი სტუდენტთა მოცულობის მიხედვით:
+http://localhost:8080/classroom/getAllClassRoomFilterPro/ajax?isProjector=0
+ლინკი: classroom/getAllClassRoomFilterPro/ajax
+პარამეტრები: isProjector (int) {0,1}
+
+
+9. საკლასო ოთახი სტუდენტთა მოცულობის მიხედვით:
+http://localhost:8080/classroom/getAllClassRoomSearch/ajax?number=010
+ლინკი: classroom/getAllClassRoomSearch/ajax
+პარამეტრები: number (String)
+
+Subject
+1. Day Offs
+http://localhost:8080/subject/getDayOff/ajax
+
+
+
+Guest
+1. მოთხოვნის დამატება:
+http://localhost:8080/guest/createRequest/ajax?name=gvantsa&lastName=kevkhishvili&company=cgc&phone=597104302&companyEmail=cgc@cgc.ge&userEmail=gvantsa@gmail.com&comment=test&startDate=07&endDate=99&startTime=2&endTime=0
+ლინკი: guest/createRequest/ajax
+პარამეტრები: name, lastName, company(კომპანიის სახელი), phone(პირის ტელეფონი), companyEmail, userEmail, comment, startDate, endDate, startTime, endTime
+2. დაკავებულობის ცხრილი აუდიტორიის მიხედვით:
+http://localhost:8080/guest/getScheduleByClass?id= 
+ლინკი: guest/getScheduleByClass
+პარამეტრები: id
