@@ -76,6 +76,7 @@ public class GuestDao {
                 scheduleEntity.setEndDate(rs.getString("endDate"));
                 scheduleEntity.setStartTime(rs.getString("startTime"));
                 scheduleEntity.setEndTime(rs.getString("endTime"));
+                scheduleEntity.setWeekDay(rs.getString("weekday"));
                 scheduleEntity.setClassroomId(rs.getString("classroom_idClassRoom"));
                 scheduleEntity.setSubjectId(rs.getString("subjects_idSubjects"));
                 scheduleEntity.setTeacherId(rs.getString("teacher_idTeacher"));
