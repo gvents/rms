@@ -5,7 +5,9 @@ import org.springframework.stereotype.Repository;
 
 import java.sql.*;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * Created by IntelliJ IDEA.
@@ -17,8 +19,8 @@ import java.util.List;
 @Repository
 public class GuestDao {
     public String createRequest(String name, String lastName, String company, String phone,
-                                String companyEmail, String userEmail, String comment,
-                                String startDate, String endDate, String startTime, String endTime) {
+                                String companyEmail, String userEmail, String comment, String startDate,
+                                String endDate, String startTime, String endTime, String weekDays) {
         String sql = "{ call createRequest(?,?,?,?,?,?,?,?,?,?,?)}";
         String result = "";
         StringBuilder stringBuilder = new StringBuilder();
@@ -27,18 +29,32 @@ public class GuestDao {
             stringBuilder.append(comment);
             stringBuilder.append('\n');
 
-            if (startDate != null && endDate != null && startTime != null && endTime != null ||
-                    startDate.equals("") && endDate.equals("") && startTime.equals("") && endTime.equals("")) {
+            if (startDate != null && endDate != null && startTime != null && endTime != null &&
+                    !startDate.equals("") && !endDate.equals("") && !startTime.equals("") && !endTime.equals("")) {
                 if (startDate.equals(endDate)) {
-                    stringBuilder.append(startDate + '\n');
+                    stringBuilder.append(startDate).append('\n');
                 } else {
-                    stringBuilder.append(startDate + " - " + endDate + '\n');
+                    stringBuilder.append(startDate).append(" - ").append(endDate).append('\n');
                 }
             } else {
                 throw new NullPointerException();
             }
 
-            stringBuilder.append(startTime + " - " + endTime);
+            stringBuilder.append(startTime).append(" - ").append(endTime).append('\n');
+
+            Map<String, String> days = new HashMap<>();
+            days.put("0", "ორშაბათი");
+            days.put("1", "სამშაბათი");
+            days.put("2", "ოთხშაბათი");
+            days.put("3", "ხუთშაბათი");
+            days.put("4", "პარასკევი");
+            days.put("5", "შაბათი");
+            days.put("6", "კვირა");
+
+            for (int i = 0; i < weekDays.split(" ").length; i++) {
+                stringBuilder.append(days.get(weekDays.split(" ")[i])).append(" ");
+            }
+
             System.out.println(stringBuilder.toString());
 
             Class.forName("com.mysql.jdbc.Driver");

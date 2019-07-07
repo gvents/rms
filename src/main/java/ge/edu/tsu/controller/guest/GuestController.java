@@ -28,10 +28,10 @@ public class GuestController {
             produces = "application/json;charset=UTF-8")
     public @ResponseBody
     String createRequest(String name, String lastName, String company, String phone,
-                         String companyEmail, String userEmail, String comment,
-                         String startDate, String endDate, String startTime, String endTime) {
+                         String companyEmail, String userEmail, String comment, String startDate,
+                         String endDate, String startTime, String endTime, String weekDays) {
         return guestService.createRequest(name, lastName, company, phone, companyEmail, userEmail,
-                comment, startDate, endDate, startTime, endTime);
+                comment, startDate, endDate, startTime, endTime, weekDays);
     }
 
     @RequestMapping(headers = {"Accept=application/json;charset=UTF-8"}, value = "getScheduleByClass",
