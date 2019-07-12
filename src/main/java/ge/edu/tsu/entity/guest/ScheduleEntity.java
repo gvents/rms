@@ -1,5 +1,8 @@
 package ge.edu.tsu.entity.guest;
 
+import java.util.HashMap;
+import java.util.Map;
+
 /**
  * Created by IntelliJ IDEA.
  * User: gvanca
@@ -17,6 +20,17 @@ public class ScheduleEntity {
     private String classroomId;
     private String subjectId;
     private String teacherId;
+    private Map<String, String> days = new HashMap<>();
+
+    public ScheduleEntity() {
+        days.put("0", "ორშაბათი");
+        days.put("1", "სამშაბათი");
+        days.put("2", "ოთხშაბათი");
+        days.put("3", "ხუთშაბათი");
+        days.put("4", "პარასკევი");
+        days.put("5", "შაბათი");
+        days.put("6", "კვირა");
+    }
 
     public int getIdSchedule() {
         return idSchedule;
@@ -88,5 +102,9 @@ public class ScheduleEntity {
 
     public void setTeacherId(String teacherId) {
         this.teacherId = teacherId;
+    }
+
+    public String toWeekDays(String key) {
+        return days.get(key);
     }
 }

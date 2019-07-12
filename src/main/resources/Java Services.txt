@@ -50,3 +50,9 @@ http://localhost:8080/guest/createRequest/ajax?name=gvantsa&lastName=kevkhishvil
 http://localhost:8080/guest/getScheduleByClass?id= 
 ლინკი: guest/getScheduleByClass
 პარამეტრები: id
+
+Admin
+1. ინსერტი Schedule-ში
+http://localhost:8080/admin/createSchedule/ajax?startDate=7/5/2019&endDate=7/12/2019&startTime=11:50:05%20AM&endTime=11:50:20%20AM&weekday=0&classroomId=1&subjectId=&teacherId=&company=tsu&subjectName=training
+ლინკი: admin/createSchedule/ajax
+პარამეტრები: startDate, endDate, startTime, endTime, weekday, classroomId, subjectId, teacherId, company, subjectName

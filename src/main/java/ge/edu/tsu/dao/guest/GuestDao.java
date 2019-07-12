@@ -3,11 +3,14 @@ package ge.edu.tsu.dao.guest;
 import ge.edu.tsu.entity.guest.ScheduleEntity;
 import org.springframework.stereotype.Repository;
 
+import java.nio.charset.Charset;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
+import static java.nio.charset.StandardCharsets.UTF_8;
 
 /**
  * Created by IntelliJ IDEA.
