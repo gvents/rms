@@ -39,7 +39,8 @@ Subject
 1. Day Offs
 http://localhost:8080/subject/getDayOff/ajax
 
-
+2. ყველა საგანი 
+http://localhost:8080/subject/getAllSubject/ajax
 
 Guest
 1. მოთხოვნის დამატება:
