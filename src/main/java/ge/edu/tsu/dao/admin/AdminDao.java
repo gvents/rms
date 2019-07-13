@@ -154,7 +154,7 @@ public class AdminDao {
     }
 
     public List<ScheduleEntity> getSchedule() {
-        String sql = "{ call getAllSchedule()}";
+        String sql = "{ call getSchedule()}";
         List<ScheduleEntity> result = new ArrayList<>();
 
         try {
@@ -175,9 +175,15 @@ public class AdminDao {
                 scheduleEntity.setStartTime(rs.getString("startTime"));
                 scheduleEntity.setEndTime(rs.getString("endTime"));
                 scheduleEntity.setWeekDay(rs.getString("weekday"));
-                scheduleEntity.setClassroomId(rs.getString("classroom_idClassRoom"));
-                scheduleEntity.setSubjectId(rs.getString("subjects_idSubjects"));
-                scheduleEntity.setTeacherId(rs.getString("teacher_idTeacher"));
+                scheduleEntity.setClassroomId(rs.getString("idClassRoom"));
+                scheduleEntity.setClassroom(rs.getString("number"));
+                scheduleEntity.setSubjectId(rs.getString("idSubjects"));
+                scheduleEntity.setSubject(rs.getString("subjects.name"));
+                scheduleEntity.setTeacherId(rs.getString("idTeacher"));
+                scheduleEntity.setTeacherName(rs.getString("teacher.name"));
+                scheduleEntity.setTeacherName(rs.getString("lastName"));
+                scheduleEntity.setCompany(rs.getString("company_name"));
+                scheduleEntity.setSubjectName(rs.getString("subject_name"));
 
                 result.add(scheduleEntity);
             }

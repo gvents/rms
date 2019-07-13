@@ -1,8 +1,11 @@
 package ge.edu.tsu.service.admin;
 
 import ge.edu.tsu.dao.admin.AdminDao;
+import ge.edu.tsu.entity.guest.ScheduleEntity;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 /**
  * Created by IntelliJ IDEA.
@@ -21,5 +24,9 @@ public class AdminService {
                                String subjectId, String teacherId, String company, String subjectName) {
         return adminDao.createSchedule(startDate, endDate, startTime, endTime, weekday, classroomId,
                 subjectId, teacherId, company, subjectName);
+    }
+
+    public List<ScheduleEntity> getSchedule() {
+        return adminDao.getSchedule();
     }
 }

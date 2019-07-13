@@ -1,10 +1,13 @@
 package ge.edu.tsu.controller.admin;
 
+import ge.edu.tsu.entity.guest.ScheduleEntity;
 import ge.edu.tsu.service.admin.AdminService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
+
+import java.util.List;
 
 /**
  * Created by IntelliJ IDEA.
@@ -27,5 +30,12 @@ public class AdminController {
                         String subjectId, String teacherId, String company, String subjectName) {
         return adminService.createSchedule(startDate, endDate, startTime, endTime, weekday, classroomId,
                 subjectId, teacherId, company, subjectName);
+    }
+
+    @RequestMapping(headers = {"Accept=application/json;charset=UTF-8"}, value = "getSchedule/ajax",
+            produces = "application/json;charset=UTF-8")
+    public @ResponseBody
+    List<ScheduleEntity> getSchedule() {
+        return adminService.getSchedule();
     }
 }

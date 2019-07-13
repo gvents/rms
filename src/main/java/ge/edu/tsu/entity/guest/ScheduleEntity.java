@@ -18,8 +18,14 @@ public class ScheduleEntity {
     private String endTime;
     private String weekDay;
     private String classroomId;
+    private String classroom;
     private String subjectId;
+    private String subject;
     private String teacherId;
+    private String teacherName;
+    private String teacherLastName;
+    private String company;
+    private String subjectName;
     private Map<String, String> days = new HashMap<>();
 
     public ScheduleEntity() {
@@ -73,7 +79,7 @@ public class ScheduleEntity {
     }
 
     public String getWeekDay() {
-        return weekDay;
+        return weekDay != null ? toWeekDays(weekDay) : "";
     }
 
     public void setWeekDay(String weekDay) {
@@ -88,6 +94,14 @@ public class ScheduleEntity {
         this.classroomId = classroomId;
     }
 
+    public String getClassroom() {
+        return classroom;
+    }
+
+    public void setClassroom(String classroom) {
+        this.classroom = classroom;
+    }
+
     public String getSubjectId() {
         return subjectId;
     }
@@ -96,12 +110,52 @@ public class ScheduleEntity {
         this.subjectId = subjectId;
     }
 
+    public String getSubject() {
+        return subject;
+    }
+
+    public void setSubject(String subject) {
+        this.subject = subject;
+    }
+
     public String getTeacherId() {
         return teacherId;
     }
 
     public void setTeacherId(String teacherId) {
         this.teacherId = teacherId;
+    }
+
+    public String getTeacherName() {
+        return teacherName;
+    }
+
+    public void setTeacherName(String teacherName) {
+        this.teacherName = teacherName;
+    }
+
+    public String getTeacherLastName() {
+        return teacherLastName;
+    }
+
+    public void setTeacherLastName(String teacherLastName) {
+        this.teacherLastName = teacherLastName;
+    }
+
+    public String getCompany() {
+        return company;
+    }
+
+    public void setCompany(String company) {
+        this.company = company;
+    }
+
+    public String getSubjectName() {
+        return subjectName;
+    }
+
+    public void setSubjectName(String subjectName) {
+        this.subjectName = subjectName;
     }
 
     public String toWeekDays(String key) {
