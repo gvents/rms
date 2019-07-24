@@ -74,3 +74,12 @@ teacherName;
 teacherLastName;
 company – კომპანიის სახელი;
 subjectName – ტრენინგი/სემინარი;
+3. User დამატება
+http://localhost:8080/admin/createUser/ajax?username=gvantsa&password=gvantsa
+ლინკი: http://localhost:8080/admin/createUser/ajax
+პარამეტრები: username, password
+4. User შემოწმება
+http://localhost:8080/admin/checkUser/ajax?username=gvantsa&password=gvantsa
+ლინკი: http://localhost:8080/admin/checkUser/ajax
+პარამეტრები: username, password
+აბრუნებს: 0 – ასეთი იუზერი არ არსებობს, 1 – არსებობს

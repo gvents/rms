@@ -5,6 +5,7 @@ import org.springframework.stereotype.Repository;
 
 import java.math.BigInteger;
 import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 import java.sql.*;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
@@ -205,24 +206,6 @@ public class AdminDao {
         String sql = "{ call createUser(?,?)}";
 
         try {
-            // Static getInstance method is called with hashing SHA
-            MessageDigest md = MessageDigest.getInstance("SHA-256");
-
-            // digest() method called
-            // to calculate message digest of an input
-            // and return array of byte
-            byte[] messageDigest = md.digest(password.getBytes());
-
-            // Convert byte array into signum representation
-            BigInteger no = new BigInteger(1, messageDigest);
-
-            // Convert message digest into hex value
-            String hashtext = no.toString(16);
-
-            while (hashtext.length() < 32) {
-                hashtext = "0" + hashtext;
-            }
-
             Class.forName("com.mysql.jdbc.Driver");
             Connection conn = DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/test",
                     "root", "");
@@ -230,7 +213,7 @@ public class AdminDao {
             CallableStatement cstmt = conn.prepareCall(sql);
 
             cstmt.setString(1, username);
-            cstmt.setString(2, password);
+            cstmt.setString(2, toSHA(password));
 
             cstmt.execute();
             cstmt.close();
@@ -239,5 +222,49 @@ public class AdminDao {
         } catch (Exception e) {
             System.err.println(e.getMessage());
         }
+    }
+
+    public int checkUser(String username, String password) {
+        int result = -1;
+        String sql = "{ call checkUser(?,?)}";
+
+        try {
+            Class.forName("com.mysql.jdbc.Driver");
+            Connection conn = DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/test",
+                    "root", "");
+
+            CallableStatement cstmt = conn.prepareCall(sql);
+
+            cstmt.setString(1, username);
+            cstmt.setString(2, toSHA(password));
+
+            ResultSet rs = cstmt.executeQuery();
+
+            while (rs.next()) {
+                result = rs.getInt(1);
+            }
+
+            conn.close();
+        } catch (Exception e) {
+            System.err.println(e.getMessage());
+        }
+
+        return result;
+    }
+
+    private String toSHA(String password) throws NoSuchAlgorithmException {
+        MessageDigest md = MessageDigest.getInstance("SHA-256");
+
+        byte[] messageDigest = md.digest(password.getBytes());
+
+        BigInteger no = new BigInteger(1, messageDigest);
+
+        String hashText = no.toString(16);
+
+        while (hashText.length() < 32) {
+            hashText = "0" + hashText;
+        }
+
+        return hashText;
     }
 }

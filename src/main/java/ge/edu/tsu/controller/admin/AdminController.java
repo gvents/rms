@@ -40,4 +40,18 @@ public class AdminController {
     List<ScheduleEntity> getSchedule() {
         return adminService.getSchedule();
     }
+
+    @RequestMapping(headers = {"Accept=application/json;charset=UTF-8"}, value = "createUser/ajax",
+            produces = "application/json;charset=UTF-8")
+    public @ResponseBody
+    void createUser(String username, String password) {
+        adminService.createUser(username, password);
+    }
+
+    @RequestMapping(headers = {"Accept=application/json;charset=UTF-8"}, value = "checkUser/ajax",
+            produces = "application/json;charset=UTF-8")
+    public @ResponseBody
+    int checkUser(String username, String password) {
+        return adminService.checkUser(username, password);
+    }
 }

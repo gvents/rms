@@ -29,4 +29,12 @@ public class AdminService {
     public List<ScheduleEntity> getSchedule() {
         return adminDao.getSchedule();
     }
+
+    public void createUser(String username, String password) {
+        adminDao.createUser(username, password);
+    }
+
+    public int checkUser(String username, String password) {
+        return adminDao.checkUser(username, password);
+    }
 }
