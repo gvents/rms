@@ -3,6 +3,8 @@ package ge.edu.tsu.dao.admin;
 import ge.edu.tsu.entity.guest.ScheduleEntity;
 import org.springframework.stereotype.Repository;
 
+import java.math.BigInteger;
+import java.security.MessageDigest;
 import java.sql.*;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
@@ -24,8 +26,8 @@ import java.util.Locale;
 @Repository
 public class AdminDao {
     public String createSchedule(String startDate, String endDate, String startTime,
-                               String endTime, String weekday, String classroomId,
-                               String subjectId, String teacherId, String company, String subjectName) {
+                                 String endTime, String weekday, String classroomId,
+                                 String subjectId, String teacherId, String company, String subjectName) {
         String sql = "{ call createSche(?,?,?,?,?,?,?,?,?,?)}";
         String result = "მოთხოვნა წარმატებით განხორციელდა!";
 
@@ -34,7 +36,8 @@ public class AdminDao {
                     endDate != null && !endDate.equals("") &&
                     startTime != null && !startTime.equals("") &&
                     endTime != null && !endTime.equals("") &&
-                    classroomId != null && !classroomId.equals("")) {
+                    classroomId != null && !classroomId.equals("") &&
+                    weekday != null && !weekday.equals("")) {
 
                 DateFormat originalFormat = new SimpleDateFormat("M/d/yyyy");
                 DateFormat targetFormat = new SimpleDateFormat("yyyy-MM-dd");
@@ -53,52 +56,54 @@ public class AdminDao {
                 String formattedEndTime = outputFormat.format(timeFormat.parse(endTime));
                 System.out.println(outputFormat.format(timeFormat.parse(startTime)));
 
-                if (checkSchedule(formattedStartDate, formattedEndDate, formattedStartTime,
-                        formattedEndTime, weekday, classroomId) > 0) {
-                    throw new SQLDataException();
-                } else {
+                for (int i = 0; i < weekday.split(" ").length; i++) {
+                    if (checkSchedule(formattedStartDate, formattedEndDate, formattedStartTime,
+                            formattedEndTime, weekday.split(" ")[i], classroomId) > 0) {
+                        throw new SQLDataException();
+                    } else {
 
-                Class.forName("com.mysql.jdbc.Driver");
-                Connection conn = DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/test",
-                        "root", "");
+                        Class.forName("com.mysql.jdbc.Driver");
+                        Connection conn = DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/test",
+                                "root", "");
 
-                CallableStatement cstmt = conn.prepareCall(sql);
+                        CallableStatement cstmt = conn.prepareCall(sql);
 
-                cstmt.setString(1, formattedStartDate);
-                cstmt.setString(2, formattedEndDate);
-                cstmt.setString(3, formattedStartTime);
-                cstmt.setString(4, formattedEndTime);
-                cstmt.setString(5, weekday);
-                cstmt.setString(6, classroomId);
+                        cstmt.setString(1, formattedStartDate);
+                        cstmt.setString(2, formattedEndDate);
+                        cstmt.setString(3, formattedStartTime);
+                        cstmt.setString(4, formattedEndTime);
+                        cstmt.setString(5, weekday.split(" ")[i]);
+                        cstmt.setString(6, classroomId);
 
-                if (subjectId == null || subjectId.equals("")) {
-                    cstmt.setNull(7, Types.NULL);
-                } else {
-                    cstmt.setString(7, subjectId);
-                }
+                        if (subjectId == null || subjectId.equals("")) {
+                            cstmt.setNull(7, Types.NULL);
+                        } else {
+                            cstmt.setString(7, subjectId);
+                        }
 
-                if (teacherId == null || teacherId.equals("")) {
-                    cstmt.setNull(8, Types.NULL);
-                } else {
-                    cstmt.setString(8, teacherId);
-                }
+                        if (teacherId == null || teacherId.equals("")) {
+                            cstmt.setNull(8, Types.NULL);
+                        } else {
+                            cstmt.setString(8, teacherId);
+                        }
 
-                if (company == null || company.equals("")) {
-                    cstmt.setNull(9, Types.NULL);
-                } else {
-                    cstmt.setString(9, company);
-                }
+                        if (company == null || company.equals("")) {
+                            cstmt.setNull(9, Types.NULL);
+                        } else {
+                            cstmt.setString(9, company);
+                        }
 
-                if (subjectName == null || subjectName.equals("")) {
-                    cstmt.setNull(10, Types.NULL);
-                } else {
-                    cstmt.setString(10, subjectName);
-                }
+                        if (subjectName == null || subjectName.equals("")) {
+                            cstmt.setNull(10, Types.NULL);
+                        } else {
+                            cstmt.setString(10, subjectName);
+                        }
 
-                cstmt.execute();
-                cstmt.close();
+                        cstmt.execute();
+                        cstmt.close();
 
-                conn.close();
+                        conn.close();
+                    }
                 }
             } else {
                 throw new NullPointerException();
@@ -194,5 +199,45 @@ public class AdminDao {
         }
 
         return result;
+    }
+
+    public void createUser(String username, String password) {
+        String sql = "{ call createUser(?,?)}";
+
+        try {
+            // Static getInstance method is called with hashing SHA
+            MessageDigest md = MessageDigest.getInstance("SHA-256");
+
+            // digest() method called
+            // to calculate message digest of an input
+            // and return array of byte
+            byte[] messageDigest = md.digest(password.getBytes());
+
+            // Convert byte array into signum representation
+            BigInteger no = new BigInteger(1, messageDigest);
+
+            // Convert message digest into hex value
+            String hashtext = no.toString(16);
+
+            while (hashtext.length() < 32) {
+                hashtext = "0" + hashtext;
+            }
+
+            Class.forName("com.mysql.jdbc.Driver");
+            Connection conn = DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/test",
+                    "root", "");
+
+            CallableStatement cstmt = conn.prepareCall(sql);
+
+            cstmt.setString(1, username);
+            cstmt.setString(2, password);
+
+            cstmt.execute();
+            cstmt.close();
+
+            conn.close();
+        } catch (Exception e) {
+            System.err.println(e.getMessage());
+        }
     }
 }
