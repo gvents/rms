@@ -83,3 +83,9 @@ http://localhost:8080/admin/checkUser/ajax?username=gvantsa&password=gvantsa
 ლინკი: http://localhost:8080/admin/checkUser/ajax
 პარამეტრები: username, password
 აბრუნებს: 0 – ასეთი იუზერი არ არსებობს, 1 – არსებობს
+5. გარედან შემოსული მოთხოვნების ცხრილი
+http://localhost:8080/admin/getScheduledRequests/ajax
+6. შემოსული მოთხოვნები ფილტრით
+http://localhost:8080/admin/getAllRequest/ajax?status=pending
+ლინკი: http://localhost:8080/admin/getAllRequest/ajax
+პარამეტრები: status [done, rejected, pending, სიცარიელე ყველა ჩანაწერის წამოსაღებად]

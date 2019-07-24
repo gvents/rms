@@ -1,5 +1,6 @@
 package ge.edu.tsu.dao.admin;
 
+import ge.edu.tsu.entity.admin.RequestEntity;
 import ge.edu.tsu.entity.guest.ScheduleEntity;
 import org.springframework.stereotype.Repository;
 
@@ -9,13 +10,9 @@ import java.security.NoSuchAlgorithmException;
 import java.sql.*;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
-import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
-import java.time.temporal.TemporalAccessor;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
-import java.util.Locale;
 
 /**
  * Created by IntelliJ IDEA.
@@ -180,7 +177,7 @@ public class AdminDao {
                 scheduleEntity.setEndDate(rs.getString("endDate"));
                 scheduleEntity.setStartTime(rs.getString("startTime"));
                 scheduleEntity.setEndTime(rs.getString("endTime"));
-                scheduleEntity.setWeekDay(rs.getString("weekday"));
+                scheduleEntity.setWeekDay(rs.getString("weekDay"));
                 scheduleEntity.setClassroomId(rs.getString("idClassRoom"));
                 scheduleEntity.setClassroom(rs.getString("number"));
                 scheduleEntity.setSubjectId(rs.getString("idSubjects"));
@@ -192,6 +189,88 @@ public class AdminDao {
                 scheduleEntity.setSubjectName(rs.getString("subject_name"));
 
                 result.add(scheduleEntity);
+            }
+
+            conn.close();
+        } catch (Exception e) {
+            System.err.println(e.getMessage());
+        }
+
+        return result;
+    }
+
+    public List<ScheduleEntity> getScheduledRequests() {
+        String sql = "{ call getScheduledRequests()}";
+        List<ScheduleEntity> result = new ArrayList<>();
+
+        try {
+            Class.forName("com.mysql.jdbc.Driver");
+            Connection conn = DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/test",
+                    "root", "");
+
+            CallableStatement cstmt = conn.prepareCall(sql);
+
+            ResultSet rs = cstmt.executeQuery();
+
+            while (rs.next()) {
+                ScheduleEntity scheduleEntity = new ScheduleEntity();
+
+                scheduleEntity.setIdSchedule(rs.getInt("idSchedule"));
+                scheduleEntity.setStartDate(rs.getString("startDate"));
+                scheduleEntity.setEndDate(rs.getString("endDate"));
+                scheduleEntity.setStartTime(rs.getString("startTime"));
+                scheduleEntity.setEndTime(rs.getString("endTime"));
+                scheduleEntity.setWeekDay(rs.getString("weekDay"));
+                scheduleEntity.setClassroomId(rs.getString("idClassRoom"));
+                scheduleEntity.setClassroom(rs.getString("number"));
+                scheduleEntity.setCompany(rs.getString("company_name"));
+                scheduleEntity.setSubjectName(rs.getString("subject_name"));
+
+                result.add(scheduleEntity);
+            }
+
+            conn.close();
+        } catch (Exception e) {
+            System.err.println(e.getMessage());
+        }
+
+        return result;
+    }
+
+    public List<RequestEntity> getAllRequest(String status) {
+        String sql = "{ call getAllRequest(?)}";
+        List<RequestEntity> result = new ArrayList<>();
+
+        try {
+            Class.forName("com.mysql.jdbc.Driver");
+            Connection conn = DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/test",
+                    "root", "");
+
+            CallableStatement cstmt = conn.prepareCall(sql);
+
+            cstmt.setString(1, status);
+
+            ResultSet rs = cstmt.executeQuery();
+
+            while (rs.next()) {
+                RequestEntity requestEntity = new RequestEntity();
+
+                requestEntity.setRequestId(rs.getString("reqID"));
+                requestEntity.setUserFirstName(rs.getString("user_name"));
+                requestEntity.setUserLastName(rs.getString("user_lastName"));
+                requestEntity.setCompany(rs.getString("companyName"));
+                requestEntity.setCompanyPhone(rs.getString("companyPhone"));
+                requestEntity.setCompanyEmail(rs.getString("companyEmail"));
+                requestEntity.setCompanyAddress(rs.getString("companyAdress"));
+                requestEntity.setUserPhone(rs.getString("user_phone"));
+                requestEntity.setUserEmail(rs.getString("user_email"));
+                requestEntity.setComment(rs.getString("comment"));
+                requestEntity.setCreationDate(rs.getString("creation_date"));
+                requestEntity.setStatus(rs.getString("status"));
+                requestEntity.setStaffId(rs.getString("staff_idstaff"));
+                requestEntity.setScheduleId(rs.getString("schedule_idSchedule"));
+
+                result.add(requestEntity);
             }
 
             conn.close();

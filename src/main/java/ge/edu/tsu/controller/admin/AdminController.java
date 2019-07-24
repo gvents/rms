@@ -1,5 +1,6 @@
 package ge.edu.tsu.controller.admin;
 
+import ge.edu.tsu.entity.admin.RequestEntity;
 import ge.edu.tsu.entity.guest.ScheduleEntity;
 import ge.edu.tsu.service.admin.AdminService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -39,6 +40,20 @@ public class AdminController {
     public @ResponseBody
     List<ScheduleEntity> getSchedule() {
         return adminService.getSchedule();
+    }
+
+    @RequestMapping(headers = {"Accept=application/json;charset=UTF-8"}, value = "getScheduledRequests/ajax",
+            produces = "application/json;charset=UTF-8")
+    public @ResponseBody
+    List<ScheduleEntity> getScheduledRequests() {
+        return adminService.getScheduledRequests();
+    }
+
+    @RequestMapping(headers = {"Accept=application/json;charset=UTF-8"}, value = "getAllRequest/ajax",
+            produces = "application/json;charset=UTF-8")
+    public @ResponseBody
+    List<RequestEntity> getAllRequest(String status)  {
+        return adminService.getAllRequest(status);
     }
 
     @RequestMapping(headers = {"Accept=application/json;charset=UTF-8"}, value = "createUser/ajax",

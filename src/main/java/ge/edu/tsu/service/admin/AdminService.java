@@ -1,6 +1,7 @@
 package ge.edu.tsu.service.admin;
 
 import ge.edu.tsu.dao.admin.AdminDao;
+import ge.edu.tsu.entity.admin.RequestEntity;
 import ge.edu.tsu.entity.guest.ScheduleEntity;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -28,6 +29,14 @@ public class AdminService {
 
     public List<ScheduleEntity> getSchedule() {
         return adminDao.getSchedule();
+    }
+
+    public List<ScheduleEntity> getScheduledRequests() {
+        return adminDao.getScheduledRequests();
+    }
+
+    public List<RequestEntity> getAllRequest(String status) {
+        return adminDao.getAllRequest(status);
     }
 
     public void createUser(String username, String password) {
