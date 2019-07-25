@@ -69,4 +69,11 @@ public class AdminController {
     int checkUser(String username, String password) {
         return adminService.checkUser(username, password);
     }
+
+    @RequestMapping(headers = {"Accept=application/json;charset=UTF-8"}, value = "changeStatus/ajax",
+            produces = "application/json;charset=UTF-8")
+    public @ResponseBody
+    void changeStatus(String id, String status) {
+        adminService.changeStatus(id, status);
+    }
 }

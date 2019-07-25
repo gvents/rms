@@ -331,6 +331,27 @@ public class AdminDao {
         return result;
     }
 
+    public void changeStatus(String id, String status) {
+        String sql = "{ call statusChange(?,?)}";
+
+        try {
+            Class.forName("com.mysql.jdbc.Driver");
+            Connection conn = DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/test",
+                    "root", "");
+
+            CallableStatement cstmt = conn.prepareCall(sql);
+
+            cstmt.setString(1, id);
+            cstmt.setString(2, status);
+
+            cstmt.executeQuery();
+
+            conn.close();
+        } catch (Exception e) {
+            System.err.println(e.getMessage());
+        }
+    }
+
     private String toSHA(String password) throws NoSuchAlgorithmException {
         MessageDigest md = MessageDigest.getInstance("SHA-256");
 

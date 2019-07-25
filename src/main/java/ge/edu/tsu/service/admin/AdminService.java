@@ -46,4 +46,8 @@ public class AdminService {
     public int checkUser(String username, String password) {
         return adminDao.checkUser(username, password);
     }
+
+    public void changeStatus(String id, String status) {
+        adminDao.changeStatus(id, status);
+    }
 }
