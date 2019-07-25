@@ -89,3 +89,7 @@ http://localhost:8080/admin/getScheduledRequests/ajax
 http://localhost:8080/admin/getAllRequest/ajax?status=pending
 ლინკი: http://localhost:8080/admin/getAllRequest/ajax
 პარამეტრები: status [done, rejected, pending, სიცარიელე ყველა ჩანაწერის წამოსაღებად]
+7. სტატუსის ცვლილება
+http://localhost:8080/admin/changeStatus/ajax?id=3&status=rejected
+ლინკი: http://localhost:8080/admin/changeStatus/ajax
+პარამეტრები: id - requestId, status [done, rejected, pending]
