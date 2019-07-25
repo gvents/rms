@@ -20,11 +20,12 @@ public class GuestDao {
 
         try {
             stringBuilder.append(comment);
-            stringBuilder.append("   ");
+            stringBuilder.append(";   ");
 
             if (startDate != null && endDate != null && startTime != null && endTime != null &&
                     !startDate.equals("") && !endDate.equals("") && !startTime.equals("") && !endTime.equals("") &&
                     classroom != null && !classroom.equals("") && weekDays != null && !weekDays.equals("")) {
+                stringBuilder.append("აუდიტორია: ").append(classroom).append(";    ");
                 if (startDate.equals(endDate)) {
                     stringBuilder.append("თარიღი: ").append(startDate).append(";   ");
                 } else {
