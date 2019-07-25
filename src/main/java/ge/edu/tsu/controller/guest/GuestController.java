@@ -10,13 +10,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 
-/**
- * Created by IntelliJ IDEA.
- * User: gvanca
- * Date: 7/1/2019
- * Time: 5:47 PM
- * To change this template use File | Settings | File Templates.
- */
 @RestController
 @RequestMapping("guest")
 @CrossOrigin
@@ -29,9 +22,9 @@ public class GuestController {
     public @ResponseBody
     String createRequest(String name, String lastName, String company, String phone,
                          String companyEmail, String userEmail, String comment, String startDate,
-                         String endDate, String startTime, String endTime, String weekDays) {
+                         String endDate, String startTime, String endTime, String weekDays, String classroom) {
         return guestService.createRequest(name, lastName, company, phone, companyEmail, userEmail,
-                comment, startDate, endDate, startTime, endTime, weekDays);
+                comment, startDate, endDate, startTime, endTime, weekDays, classroom);
     }
 
     @RequestMapping(headers = {"Accept=application/json;charset=UTF-8"}, value = "getScheduleByClass",

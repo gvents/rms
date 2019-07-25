@@ -7,13 +7,6 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * Created by IntelliJ IDEA.
- * User: gvanca
- * Date: 3/20/2019
- * Time: 5:12 PM
- * To change this template use File | Settings | File Templates.
- */
 @Repository
 public class ClassroomDao {
     public void createClassroom(String number, int capacity, int isProjector, int isComputer, int isInternet) {

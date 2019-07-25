@@ -1,12 +1,5 @@
 package ge.edu.tsu.entity.subject;
 
-/**
- * Created by IntelliJ IDEA.
- * User: gvanca
- * Date: 4/27/2019
- * Time: 11:36 AM
- * To change this template use File | Settings | File Templates.
- */
 public class SubjectTeachersEntity {
     private int subjectId;
     private int teacherId;

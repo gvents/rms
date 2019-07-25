@@ -10,13 +10,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 
-/**
- * Created by IntelliJ IDEA.
- * User: gvanca
- * Date: 3/22/2019
- * Time: 5:31 PM
- * To change this template use File | Settings | File Templates.
- */
 @RestController
 @RequestMapping("subject")
 @CrossOrigin

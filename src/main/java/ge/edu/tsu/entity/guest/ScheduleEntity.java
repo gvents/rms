@@ -3,13 +3,6 @@ package ge.edu.tsu.entity.guest;
 import java.util.HashMap;
 import java.util.Map;
 
-/**
- * Created by IntelliJ IDEA.
- * User: gvanca
- * Date: 7/4/2019
- * Time: 5:41 PM
- * To change this template use File | Settings | File Templates.
- */
 public class ScheduleEntity {
     private int idSchedule;
     private String startDate;

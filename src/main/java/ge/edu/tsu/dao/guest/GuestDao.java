@@ -3,27 +3,17 @@ package ge.edu.tsu.dao.guest;
 import ge.edu.tsu.entity.guest.ScheduleEntity;
 import org.springframework.stereotype.Repository;
 
-import java.nio.charset.Charset;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import static java.nio.charset.StandardCharsets.UTF_8;
-
-/**
- * Created by IntelliJ IDEA.
- * User: gvanca
- * Date: 7/1/2019
- * Time: 5:24 PM
- * To change this template use File | Settings | File Templates.
- */
 @Repository
 public class GuestDao {
     public String createRequest(String name, String lastName, String company, String phone,
                                 String companyEmail, String userEmail, String comment, String startDate,
-                                String endDate, String startTime, String endTime, String weekDays) {
+                                String endDate, String startTime, String endTime, String weekDays, String classroom) {
         String sql = "{ call createRequest(?,?,?,?,?,?,?,?,?,?,?)}";
         String result = "";
         StringBuilder stringBuilder = new StringBuilder();
@@ -33,17 +23,18 @@ public class GuestDao {
             stringBuilder.append("   ");
 
             if (startDate != null && endDate != null && startTime != null && endTime != null &&
-                    !startDate.equals("") && !endDate.equals("") && !startTime.equals("") && !endTime.equals("")) {
+                    !startDate.equals("") && !endDate.equals("") && !startTime.equals("") && !endTime.equals("") &&
+                    classroom != null && !classroom.equals("") && weekDays != null && !weekDays.equals("")) {
                 if (startDate.equals(endDate)) {
-                    stringBuilder.append(startDate).append("   ");
+                    stringBuilder.append("თარიღი: ").append(startDate).append(";   ");
                 } else {
-                    stringBuilder.append(startDate).append(" - ").append(endDate).append("   ");
+                    stringBuilder.append("საწყისი და საბოლოო თარიღი: ").append(startDate).append(" - ").append(endDate).append(";   ");
                 }
             } else {
                 throw new NullPointerException();
             }
 
-            stringBuilder.append(startTime).append(" - ").append(endTime).append("   ");
+            stringBuilder.append("საწყისი და საბოლოო დრო: ").append(startTime).append(" - ").append(endTime).append(";   კვირის დღეები: ");
 
             Map<String, String> days = new HashMap<>();
             days.put("0", "ორშაბათი");

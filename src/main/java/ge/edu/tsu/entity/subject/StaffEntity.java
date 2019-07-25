@@ -1,12 +1,5 @@
 package ge.edu.tsu.entity.subject;
 
-/**
- * Created by IntelliJ IDEA.
- * User: gvanca
- * Date: 6/14/2019
- * Time: 2:41 PM
- * To change this template use File | Settings | File Templates.
- */
 public class StaffEntity {
     private int id;
     private String name;

@@ -6,18 +6,10 @@ import org.springframework.stereotype.Repository;
 import java.sql.*;
 import java.util.Date;
 import java.text.DateFormat;
-import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * Created by IntelliJ IDEA.
- * User: gvanca
- * Date: 3/22/2019
- * Time: 5:31 PM
- * To change this template use File | Settings | File Templates.
- */
 @Repository
 public class SubjectDao {
 

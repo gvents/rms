@@ -1,12 +1,5 @@
 package ge.edu.tsu.entity.admin;
 
-/**
- * Created by IntelliJ IDEA.
- * User: gvanca
- * Date: 7/24/2019
- * Time: 7:28 PM
- * To change this template use File | Settings | File Templates.
- */
 public class RequestEntity {
     private String requestId;
     private String userFirstName;

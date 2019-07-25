@@ -44,9 +44,9 @@ http://localhost:8080/subject/getAllSubject/ajax
 
 Guest
 1. მოთხოვნის დამატება:
-http://localhost:8080/guest/createRequest/ajax?name=gvantsa&lastName=kevkhishvili&company=cgc&phone=597104302&companyEmail=cgc@cgc.ge&userEmail=gvantsa@gmail.com&comment=test&startDate=07&endDate=99&startTime=2&endTime=0&weekDays=0 3 4
+http://localhost:8080/guest/createRequest/ajax?name=gvantsa&lastName=kevkhishvili&company=cgc&phone=597104302&companyEmail=cgc@cgc.ge&userEmail=gvantsa@gmail.com&comment=test&startDate=07&endDate=99&startTime=2&endTime=0&weekDays=0 3 4&classroom=201
 ლინკი: guest/createRequest/ajax
-პარამეტრები: name, lastName, company(კომპანიის სახელი), phone(პირის ტელეფონი), companyEmail, userEmail, comment, startDate, endDate, startTime, endTime
+პარამეტრები: name, lastName, company(კომპანიის სახელი), phone(პირის ტელეფონი), companyEmail, userEmail, comment, startDate, endDate, startTime, endTime, classroom
 2. დაკავებულობის ცხრილი აუდიტორიის მიხედვით:
 http://localhost:8080/guest/getScheduleByClass?id= 
 ლინკი: guest/getScheduleByClass

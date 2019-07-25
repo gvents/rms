@@ -2,19 +2,11 @@ package ge.edu.tsu.controller.classroom;
 
 import ge.edu.tsu.entity.classroom.ClassroomEntity;
 import ge.edu.tsu.service.classroom.ClassroomService;
-import org.omg.PortableInterceptor.ServerRequestInfo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-/**
- * Created by IntelliJ IDEA.
- * User: gvanca
- * Date: 3/20/2019
- * Time: 5:25 PM
- * To change this template use File | Settings | File Templates.
- */
 @RestController
 @RequestMapping("classroom")
 @CrossOrigin

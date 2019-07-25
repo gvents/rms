@@ -14,13 +14,6 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-/**
- * Created by IntelliJ IDEA.
- * User: gvanca
- * Date: 7/9/2019
- * Time: 10:54 AM
- * To change this template use File | Settings | File Templates.
- */
 @Repository
 public class AdminDao {
     public String createSchedule(String startDate, String endDate, String startTime,
