@@ -96,7 +96,7 @@ public class RequestEntity {
     }
 
     public String getComment() {
-        return comment.replace("\n", "<br>");
+        return comment.replace("\n", "   ");
     }
 
     public void setComment(String comment) {

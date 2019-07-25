@@ -30,20 +30,20 @@ public class GuestDao {
 
         try {
             stringBuilder.append(comment);
-            stringBuilder.append("<br>");
+            stringBuilder.append("   ");
 
             if (startDate != null && endDate != null && startTime != null && endTime != null &&
                     !startDate.equals("") && !endDate.equals("") && !startTime.equals("") && !endTime.equals("")) {
                 if (startDate.equals(endDate)) {
-                    stringBuilder.append(startDate).append("<br>");
+                    stringBuilder.append(startDate).append("   ");
                 } else {
-                    stringBuilder.append(startDate).append(" - ").append(endDate).append("<br>");
+                    stringBuilder.append(startDate).append(" - ").append(endDate).append("   ");
                 }
             } else {
                 throw new NullPointerException();
             }
 
-            stringBuilder.append(startTime).append(" - ").append(endTime).append("<br>");
+            stringBuilder.append(startTime).append(" - ").append(endTime).append("   ");
 
             Map<String, String> days = new HashMap<>();
             days.put("0", "ორშაბათი");
